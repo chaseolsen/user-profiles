@@ -5,7 +5,7 @@ angular.module('userProfiles')
     this.login = function( user ) {
       return $http({
         method: 'GET',
-        url: 'http://localhost:5000/sandwich'
+        url: 'http://localhost:5000/api/login'
       }).then(function(response){
         console.log(response);
         return response;
@@ -13,7 +13,13 @@ angular.module('userProfiles')
     };
 
     this.getFriends = function() {
-    	/* FIX ME */
+    	return $http({
+        method: 'GET',
+        url: 'http://localhost:5000/api/profiles'
+      }).then(function(response){
+        console.log(response);
+        return response;
+      });
     };
 
 });

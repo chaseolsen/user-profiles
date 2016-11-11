@@ -22,5 +22,23 @@ var profiles = [
 ];
 
 module.exports = {
-  
+  currentUser: function(req, res, next){
+    var currentUserFriends = req.session.currentUser.friends;
+    var yourArrayOfFriendObjects = [];
+
+    for(var i = 0; i < currentUserFriends.length; i++){
+      for (var j = 0; j < profiles.length; j++){
+        if(currentUserFriends[i] === profiles[j].name){
+          yourArrayOfFriendObjects.push(profiles[j]);
+        }
+      }
+    }
+
+    res.send({
+      currentUser: req.session.currentUser,
+      friends: yourArrayOfFriendObjects,
+    });
+  },
+
+
 };

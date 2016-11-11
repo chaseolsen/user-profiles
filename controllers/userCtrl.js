@@ -24,15 +24,24 @@ var users = [
 module.exports = {
 
   login: function(req, res, next){
+
     var result = users.map(function(user){
 
       if( req.body.name === user.name && req.body.password === user.password){
-        res.json({userFound: true});
-        return;
+        return user;
       }
     });
 
-      res.json({userFound: false});
+      if(result[0]){
+        req.session.currentUser = result[0];
+        res.json({userFound: true});
+      } else {
+
+        res.json({userFound: false});
+
+      }
+
+
   },
 
 

@@ -27,6 +27,8 @@ app.use(cors(corsOptions));
 
 app.post('/api/login', userCtrl.login);
 
+app.get('/api/profiles', profileCtrl.currentUser);
+
 
 
 
