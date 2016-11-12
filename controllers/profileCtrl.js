@@ -23,13 +23,17 @@ var profiles = [
 
 module.exports = {
   currentUser: function(req, res, next){
+    // req.session.currentUser is the user we set to session in userCtrl.js (the user the logged in);
     var currentUserFriends = req.session.currentUser.friends;
+    // set currentUserFriends to the current users friends
+
     var yourArrayOfFriendObjects = [];
 
-    for(var i = 0; i < currentUserFriends.length; i++){
-      for (var j = 0; j < profiles.length; j++){
+    for(var i = 0; i < currentUserFriends.length; i++){ //-- loops through how many friends they have
+
+      for (var j = 0; j < profiles.length; j++){ //<-- profiles is data up above
         if(currentUserFriends[i] === profiles[j].name){
-          yourArrayOfFriendObjects.push(profiles[j]);
+          yourArrayOfFriendObjects.push(profiles[j]); // <--- everytime currentUserFriends[i] equals profiles[j].name, then it pushes to array created above (yourArrayOfFriendObjects)
         }
       }
     }

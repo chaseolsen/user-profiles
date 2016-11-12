@@ -25,15 +25,19 @@ module.exports = {
 
   login: function(req, res, next){
 
-    var result = users.map(function(user){
+    var result = users.map(function(user){ // <-- Turning users (from above) and mapping them into 'user'
+
+
+      //req.body.name (the name)is the post we are inputing from postman
 
       if( req.body.name === user.name && req.body.password === user.password){
+        // console.log(user);
         return user;
       }
     });
-
-      if(result[0]){
-        req.session.currentUser = result[0];
+      // console.log(result[0]); // <-- Grabs the found user and just their data.
+      if(result[0]){ // <--- if result[0] is true (has user data), then continue
+        req.session.currentUser = result[0]; //<-- turn into req.session.currentUser
         res.json({userFound: true});
       } else {
 
